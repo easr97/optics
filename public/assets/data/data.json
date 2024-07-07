@@ -1,0 +1,58 @@
+[
+   
+    
+    {
+        "precio": 52000,
+        "id":"Marron",
+        "title":"Unisex",
+        "thumbnailUrl":"assets/img/glass-3.jfif"
+    },
+    {
+        "precio": "Optico",
+        "id":"Marron",
+        "title":"Hombre",
+        "thumbnailUrl":"assets/img/glass-4.jfif"
+    },
+    {
+        "precio": "Optico",
+        "id":"Negro",
+        "title":"Mujer",
+        "thumbnailUrl":"assets/img/glass-5.jfif"
+    },
+    {
+        "precio": "Optico",
+        "id":"Blue",
+        "title":"Mujer",
+        "thumbnailUrl":"assets/img/glass-6.jfif"
+    },
+    {
+        "precio": "Optico",
+        "id":"Marron",
+        "title":"Hombre",
+        "thumbnailUrl":"assets/img/glass-8.jfif"
+    },
+    {
+        "precio": "Optico",
+        "id":"Gris",
+        "title":"Unisex",
+        "thumbnailUrl":"assets/img/glass-8.jpg"
+    },
+    {
+        "precio": "Optico",
+        "id":"Negro",
+        "title":"Mujer",
+        "thumbnailUrl":"./assets/img/glass-10.jpg"
+    },
+    {
+        "precio": "Optico",
+        "id":"Blanco",
+        "title":"Hombre",
+        "thumbnailUrl":"assets/img/glass-11.jpg"
+    },
+    {
+        "precio": "Optico",
+        "id":"Marron",
+        "title":"Hombre",
+        "thumbnailUrl":"assets/img/glass-12.jpg"
+    }
+]
