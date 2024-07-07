@@ -5,39 +5,70 @@ export default class ProductsControllers {
     this.db = new ProductDaosMySQL()
     this.helpers = new productsHelpers()
   }
-  
+
   getAllProducts = async (req, res) => {
-    const products = await this.db.getAllProducts()
-    res.json(products)
+    try {
+      const products = await this.db.getAllProducts()
+      res.json(products)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
-  
+
   getProductByName = async (req, res) => {
     const { descripcion } = req.query
-    //console.log("by name: ", descripcion)
-    const result = await this.db.getProductByName(descripcion)
-    res.json(result)
+    try {
+      const result = await this.db.getProductByName(descripcion)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   getProductByID = async (req, res) => {
     const { referencia } = req.query
-    //console.log("by ID: ", referencia)
-    const product = await this.db.getProductByID(referencia)
-    res.json(product)
+    try {
+      const product = await this.db.getProductByID(referencia)
+      res.json(product)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
 
   createProduct = async (req, res) => {
     const product = this.helpers.parseProduct(req.body)
-    //console.log("controller: ",product)
-    const result = await this.db.createProduct(product)
-    res.json(result)
+    try {
+      const result = await this.db.createProduct(product)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   updateProduct = async (req, res) => {
     const data = this.helpers.parseProduct(req.body)
-    console.log("actualizando: ", data)
-    const result = await this.db.updateProduct(data)
-    res.json(result)
+    try {
+      const result = await this.db.updateProduct(data)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   deleteProduct = async (req, res) => {

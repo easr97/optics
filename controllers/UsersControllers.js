@@ -5,49 +5,94 @@ export default class UsersControllers {
     this.db = new UserDaosMySQL()
     this.helpers = new usersHelpers()
   }
-  
+
   getAllUsers = async (req, res) => {
-    const users = await this.db.getAllUsers()
-    res.json(users)
+    try {
+      const users = await this.db.getAllUsers()
+      res.json(users)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
-  
+
   getUserByName = async (req, res) => {
     const { usuario } = req.query
-    const result = await this.db.getUserByName(usuario)
-    res.json(result)
+    try {
+      const result = await this.db.getUserByName(usuario)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   getUserByNombre = async (req, res) => {
     const { nombre } = req.query
-    const result = await this.db.getUserByName(nombre)
-    res.json(result)
+    try {
+      const result = await this.db.getUserByName(nombre)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   getUserByID = async (req, res) => {
     const { id } = req.params
-    const user = await this.db.getUserByID(id)
-    res.json(user)
+    try {
+      const user = await this.db.getUserByID(id)
+      res.json(user)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
-
 
   createUser = async (req, res) => {
     const user = this.helpers.parseUser(req.body)
-    const result = await this.db.createUser(user)
-    res.json(result)
+    try {
+      const result = await this.db.createUser(user)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   updateUser = async (req, res) => {
     const data = this.helpers.parseUser(req.body)
-    console.log("Controlador req.body",req.body)
-    console.log("Controlador req.body",data)
-    const result = await this.db.updateUser(data)
-    res.json(result)
+    try {
+      const result = await this.db.updateUser(data)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 
   deleteUser = async (req, res) => {
     const { usuario } = req.query
-    console.log(usuario)
-    const result = await this.db.deleteUser(usuario)
-    res.json(result)
+    try {
+      const result = await this.db.deleteUser(usuario)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
   }
 }

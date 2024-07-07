@@ -5,4 +5,5 @@ const config = {
   database: process.env.DB
 }
 
+
 export default config

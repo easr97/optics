@@ -1,3 +1,4 @@
 import Server from "./server/Server.js";
-Server.run(process.env.PORT || 8080)
+Server.run(process.env.PORT)
+
 //console.log('args: ', process.argv)
