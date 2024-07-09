@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAGINA DE REGISTRO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header>
+    <nav class="nav-main">
+      <img src="./assets/ic/1.png" alt="Smart Optics" class="nav-brand">
+      <ul class="nav-menu">
+        <li> <a href="#"> GAFAS DE SOL </a> </li>
+        <li> <a href="./index.html"> HOME</a> </li>
+        <li> <a href="./gafas_smarts.html"> GAFAS SMART </a> </li>
+        <li> <a href="./login.html"> LOG IN </a> </li>
+        <li> <a href="./registro.html"> REGISTRO </a> </li>
+      </ul>
+      <ul class="nav-menu-right">
+        <li>
+          <a href="#">
+            <i class="fas fa-search"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="form-register">
+      <h4>Formulario Registro</h4>
+      <form id="formreg" action="./auths/cregister" method="POST">
+        <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo" required>
+
+        <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña" required>
+
+        <input class="controls" type="number" name="dni" id="dni" placeholder="Ingrese su DNI" required>
+
+        <input class="controls" type="text" name="nombre" id="nombre" placeholder="Ingrese su Nombre" required>
+
+        <input class="controls" type="text" name="apellido" id="apellido" placeholder="Ingrese su Apellido" required>
+
+        <input class="controls" type="number" name="telefono" id="telefono" placeholder="Ingrese su No. Telefono" value=" ">
+        
+        <input class="controls" type="text" name="direccion" id="direccion" placeholder="Ingrese su residencia" required>
+
+        <input class="controls" type="date" name="fenac" id="fenac" placeholder="Ingrese su cumpleaños" value=" 01-01-1900">
+
+        <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+
+        <input class="botons" type="submit" value="Registrar">
+      </form>
+      <p><a href="./login.html">¿Ya tengo Cuenta?</a></p>
+    </section>
+  </main>
+  <footer class="footer">
+    <section class="social">
+      <p>SEGUINOS</p>
+      <div class="links">
+        <a href="#">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
+    <div class="footer-links">
+      <div class="footer-container">
+        <ul>
+          <li>
+            <a href="#">
+              <h3> EMPRESA </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#">NOSOTROS </a>
+          </li>
+          <li>
+            <a href="#">NUESTROS SERVICIOS </a>
+          </li>
+          <li>
+            <a href="#"> FAQS </a>
+          </li>
+          <li>
+            <a href="#">SUMATE AL EQUIPO </a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="./tienda.html">
+              <h3> TIENDA </h3>
+            </a>
+          </li>
+          <li>
+            <a href="./gafas_smarts.html"> GAFAS SMART </a>
+          </li>
+          <li>
+            <a href="#"> GAFAS MUJER </a>
+          </li>
+          <li>
+            <a href="#"> GAFAS HOMBRE </a>
+          </li>
+          <li>
+            <a href="#"> GAFAS NIÑ@S </a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="./ayuda.html">
+              <h3> AYUDA </h3>
+            </a>
+          </li>
+          <li>
+            <a href="#"> PREGUNTAS </a>
+          </li>
+          <li>
+            <a href="#"> ENVIOS </a>
+          </li>
+          <li>
+            <a href="#"> CONSULTAS </a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="./sucursales.html">
+              <h3> SUCURSALES</h3>
+            </a>
+          </li>
+          <li>
+            <a href="#"> Sucursal 1 </a>
+          </li>
+          <li>
+            <a href="#"> Sucursal 2 </a>
+          </li>
+          <li>
+            <a href="#"> Sucursal 3 </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+
+    <h3> COPYRIGHT</h3>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+
+    //import JQuery from script
+    //import swal script
+    
+    $("#formreg").on("submit", function(e){
+    e.preventDefault();
+    
+    $.ajax({
+      url: "./auths/cregister",
+      method: "post"
+    }).done(d=>{
+      swal(e.resJSON);
+    });
+    })
+    </script>
+</body>
+
+</html>
