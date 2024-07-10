@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Crystal, Anteojos,crital,Tecnologia,optica,sol">
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    
+    <title>Gestión de Usuarios</title>
+<link rel="apple-touch-icon" sizes="57x57" href="./assets/img/ic/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="./assets/img/ic/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./assets/img/ic/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/ic/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./assets/img/ic/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./assets/img/ic/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="./assets/img/ic/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./assets/img/ic/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./assets/img/ic/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="144x144" href="./assets/img/ic/android-icon-144x144.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./assets/img/ic/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/img/ic/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./assets/img/ic/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./assets/img/ic/favicon-16x16-.png">
+<link rel="manifest" href="./assets/img/ic/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<script src="https://kit.fontawesome.com/548c939c5f.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+.libre-baskerville-bold {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+  
+}
+.libre-baskerville-regular {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+<!--=================================-->
+<script>
+  // Función para obtener todos los productos
+  async function getAllUsers() {
+      const response = await fetch('http://localhost:3003/users');
+      const users = await response.json();
+      console.log(users);
+      document.getElementById('users').innerHTML = JSON.stringify(users, null, 2);
+  }
+
+  // Función para buscar productos por referencia
+  async function searchUserByNombre(event) {
+      event.preventDefault();
+      const nombre = document.getElementById('searchNombre').value;
+      const response = await fetch(`http://localhost:3003/users/search?id=${nombre}`
+        ,{
+          credentials: "omit",
+      });
+      const user = await response.json();
+      console.log(user);
+      document.getElementById('searchResult').innerHTML = JSON.stringify(user, null, 2);
+  }
+
+  // Función para crear un nuevo producto
+  async function createUser(event) {
+      event.preventDefault();
+      const user = {
+          u_usuario: document.getElementById('createReference u_usuario').value,
+          u_password: document.getElementById('createDescription u_password').value,
+          u_nombre: parseInt(document.getElementById('createCatId  u_nombre').value),
+          u_perfil: document.getElementById('createImage u_perfil').value,
+          u_foto: document.getElementById('createImage u_foto').value,
+          u_estado: document.getElementById('createState  u_estado').value,
+          u_ult_login: parseInt(document.getElementById('createStockAct u_ult_login').value),
+          u_fecha_creado: document.getElementById('createDate u_fecha_creado').value,
+          
+      };
+
+      const response = await fetch('http://localhost:3003/user', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+      });
+      const result = await response.json();
+      console.log(result);
+      getAllUsers();  // Actualiza la lista de productos
+  }
+
+  // Función para actualizar un producto
+  async function updateUser(event) {
+      event.preventDefault();
+      const id = document.getElementById('updateId').value;
+      const user = {
+          u_usuario: document.getElementById('createReference u_usuario').value,
+          u_password: document.getElementById('createDescription u_password').value,
+          u_nombre: parseInt(document.getElementById('createCatId  u_nombre').value),
+          u_perfil: document.getElementById('createImage u_perfil').value,
+          u_foto: document.getElementById('createImage u_foto').value,
+          u_estado: document.getElementById('createState  u_estado').value,
+          u_ult_login: parseInt(document.getElementById('createStockAct u_ult_login').value),
+          u_fecha_creado: document.getElementById('createDate u_fecha_creado').value,
+          
+      };
+
+      const response = await fetch(`http://localhost:3003/user/${id}`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+      });
+      const result = await response.json();
+      console.log(result);
+      getAllUsers();  // Actualiza la lista de productos
+  }
+
+  // Función para eliminar un producto
+  async function deleteUser(event) {
+      event.preventDefault();
+      const id = document.getElementById('deleteId').value;
+      const response = await fetch(`http://localhost:3003/users/${id}`, {
+          method: 'DELETE'
+      });
+      const result = await response.json();
+      console.log(result);
+      getAllUsers();  // Actualiza la lista de productos
+  }
+
+  // Cargar todos los productos al cargar la página
+  document.addEventListener('DOMContentLoaded', getAllUsers);
+</script>
+</head>
+
+<body id="titulo-shop">
+    <header> 
+
+      <nav class="navbar navbar-expand-lg bg-black">
+        <div class="container-fluid ">
+          <div>
+            <a class="navbar-brand text-white txtShW "><img src="./assets/img/LogosdeSmart-03.png" alt="" class="img-logo"></a>           
+          </div>
+          <div class="col-6"></div>
+          <div class="col-2"></div>
+          <div class="col-4">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+              <span  id="btn-iconito"><i class="fa fa-bars"></i></span>
+            </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+              <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item dropdown">
+                  <a class="text-white nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Productos
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="actualizar.html">Consultar</a></li>
+                    <li><a class="dropdown-item" href="agregar.html">Agregar</a></li>
+                    <li><a class="dropdown-item" href="actualizar.html">Actualizar</a></li>
+                    <li><a class="dropdown-item" href="actualizar.html">Elininar</a></li>
+                  </ul>
+                </li>
+              <li class="nav-item dropdown">
+                 <a class="text-white nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Usuarios
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="actualizar.html">Consultar</a></li>
+                    <li><a class="dropdown-item" href="agregar.html">Agregar</a></li>
+                    <li><a class="dropdown-item" href="actualizar.html">Actualizar</a></li>
+                    <li><a class="dropdown-item" href="actualizar.html">Elininar</a></li>
+                  </ul>
+                </li>  
+              </ul>       
+              </div>   
+          </div>
+        </div>  
+      </nav>   
+        <nav class=" bg-black"> 
+          <div class="container-fluid libre-baskerville-bold text-center ">
+          <ul class="nav justify-content-center ">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html"> Home </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="productos.html"> Productos </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="usuarios.html"> Usuarios </a>
+                </li>
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="clientes.html"> Clientes  </a>
+                </li>
+              </ul>
+        </div>
+        </nav>
+    </header>
+
+<!--============================================================-->
+
+<!--======================-->
+<main>
+  
+  <div class="container">
+    <div class="row justify-content-center">
+     <div class="col-md-8">  
+ <br>
+    <h1 class="libre-baskerville-bold text-center">Gestión de Usuarios</h1>
+    
+  
+    <form class="form-register libre-baskerville-bold text-center" id="formulario1" id="getAllUsersForm" onsubmit="getAllUsers(); return false;">
+      <h3>Consultar Usuarios</h3>
+      <div class="text-center ">
+          <button type="submit" class="btn btn-primary mb-3 "  id="botonContacto1"  value="Registrar">Obtener Usuarios</button>
+       </div>
+    </form>
+    <pre id="users"></pre>
+    
+
+    <form class="form-register libre-baskerville-bold text-center" id="formulario1" id="searchUserForm" onsubmit="searchUsertByNombre(event)">
+      <h3 >Buscar Usuario por Referencia</h3>
+      <input class="controls" type="text" id="searchNombre" placeholder="Referencia del usuario" required>
+      <div class="text-center ">
+        <button type="submit" class="btn btn-primary mb-3 center"  id="botonContacto1"  value="Registrar">Buscar</button>
+      </div>
+    </form>
+    <pre id="searchResult"></pre>
+    
+    
+    <form class="form-register libre-baskerville-bold text-center" id="formulario1" id="createUsertForm" onsubmit="createUser(event)">
+      <h3>Crear Usuario</h3>
+      <input class="controls" type="tex" name="u_usuario" id="u_usuario" placeholder="Usuario" autocomplete="off">
+      <input class="controls" type="password" name="u_password" id="u_password" placeholder="Ingrese su Contraseña con 8 más caracteres" autocomplete="off">
+      <input class="controls" type="text" name="u_nombre" id="u_nombre" placeholder="Ingrese su Nombre" autocomplete="off">
+      <input class="controls" type="text" name="u_perfil" id="u_perfil" placeholder="Ingrese perfil" autocomplete="off">
+      <input class="controls" type="text" id="u_foto" placeholder="Ingrese su foto" required>
+      <input class="controls" type="date" id="u_ult_login" placeholder="feccha de ultimo login" required>
+      <input class="controls" type="date" id="u_fecha_creado" placeholder="Fecha de creado" required>
+     <div class="text-center ">
+        <button type="submit" class="btn btn-primary mb-3"  id="botonContacto1"  value="Registrar">Crear</button>
+      </div>
+    </form>
+    
+    
+    <form class="form-register libre-baskerville-bold text-center" id="formulario1" id="updateUserForm" onsubmit="updateUser(event)">
+      <h3>Actualizar Usuario</h3>
+      <input class="controls" type="number" id="updateId" placeholder="ID del Usuario" required>
+      <input class="controls" type="tex" name="u_usuario" id="u_usuario" placeholder="Usuario" autocomplete="off">
+      <input class="controls" type="password" name="u_password" id="u_password" placeholder="Ingrese su Contraseña con 8 más caracteres" autocomplete="off">
+      <input class="controls" type="text" name="u_nombre" id="u_nombre" placeholder="Ingrese su Nombre" autocomplete="off">
+      <input class="controls" type="text" name="u_perfil" id="u_perfil" placeholder="Ingrese perfil" autocomplete="off">
+      <input class="controls" type="text" id="u_foto" placeholder="Ingrese su foto" required>
+      <input class="controls" type="date" id="u_ult_login" placeholder="feccha de ultimo login" required>
+      <input class="controls" type="date" id="u_fecha_creado" placeholder="Fecha de creado" required>
+      <div class="text-center ">
+        <button type="submit" class="btn btn-primary mb-3"  id="botonContacto1"  value="Registrar">Actualizar</button>
+      </div>
+    </form>
+    
+    <form class="form-register libre-baskerville-bold text-center" id="formulario1" id="deleteUserForm" onsubmit="deleteUser(event)">      
+      <h3>Eliminar Usuario</h3>
+      <input class="controls" type="text" id="deleteId" placeholder="ID del Usuario" required>
+      <div class="text-center ">
+         <button type="submit" class="btn btn-primary mb-3"  id="botonContacto1"  value="Registrar">Eliminar</button>
+      </div>
+  </form>
+
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>

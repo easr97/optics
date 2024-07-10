@@ -101,9 +101,11 @@
                     </div>
                 </div>
                 <p> or </p>
-                <form class="inputs-container" id="formulario2"> 
-                    <input class="input" type="text" id="nombre2" placeholder="username">
-                    <input class="input" type="text" id="password2" placeholder="password 8 más caracteres">
+                <form class="inputs-container" id="formulario2"action="./auths/clogin" method="POST"> 
+                    <input class="input" type="email" id="correo" name="correo" placeholder="Correo electrónico">
+                    <input class="input" type="text" id="password" name="password" placeholder="contraseña">              
+                    <!--<input class="input" type="text" id="nombre2" placeholder="username">
+                    <input class="input" type="text" id="password2" placeholder="password 8 más caracteres">-->
                     <p style="font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif"> Forgot password ? <span class="span"> Click Here </span> </p>
                     <button type="submit" class="btn btn-primary mb-3"  id="botonContacto2" > login </button>    
                     <p style="font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;"> Dont have Account? <span class="span"> Sign Up </span> </p>            
