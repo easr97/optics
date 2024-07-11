@@ -6,17 +6,15 @@ export default class ClientDaosMySQL extends MySql {
     this.table = "clientes"
   }
 
-  async getAllClients(){
+  async getAllClients() {
     const query = `SELECT * FROM ${this.table}`
     const [result] = await this.connection.promise().query(query)
-    console.log(result)
     return result
   }
 
   async getClientByID(dni) {
     const query = `select * from ${this.table} where cl_dni = ${dni}`
     const [result] = await this.connection.promise().query(query)
-    console.log(result)
     return result
 
   }
@@ -24,7 +22,6 @@ export default class ClientDaosMySQL extends MySql {
   async getClientByName(correo) {
     const query = `select * from ${this.table} where cl_correo = "${correo}"`
     const [result] = await this.connection.promise().query(query)
-    console.log(result)
     return result
 
   }
@@ -34,12 +31,12 @@ export default class ClientDaosMySQL extends MySql {
     values
     ("${client.correo}", "${client.password}", ${client.dni}, "${client.nombre}", "${client.apellido}", "${client.telefono}", "${client.direccion}", "${client.fenac}")`
     const [result] = await this.connection.promise().query(query)
-    if(result.affectedRows = 1)
+    if (result.affectedRows = 1)
       return "Ok"
     else
       return "Error insertando"
   }
-  
+
   async updateClient(data) {
     const query = `UPDATE ${this.table} SET
       cl_correo = "${data.correo}", 
@@ -50,20 +47,22 @@ export default class ClientDaosMySQL extends MySql {
       cl_direccion = "${data.direccion}", 
       cl_fecha_nac = "${data.fenac}"
       WHERE cl_dni = ${data.dni}`
-      const [result] = await this.connection.promise().query(query)
-      if(result.affectedRows = 1)
-        return "Ok"
-      else
-        return "Error actualizando"
-    
+    const [result] = await this.connection.promise().query(query)
+    if (result.affectedRows == 1) {
+      return "Ok"
+    } else {
+      return "Error actualizando"
+    }
   }
+
   async deleteClient(dni) {
     const query = `DELETE FROM ${this.table} WHERE cl_dni = ${dni}`
     const [result] = await this.connection.promise().query(query)
     console.log(result)
-    if(result.affectedRows = 1)
+    if (result.affectedRows == 1) {
       return "Ok"
-    else
+    } else {
       return "Error eliminando"
+    }
   }
 }

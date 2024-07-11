@@ -12,9 +12,11 @@ export default class UserRoutes extends Routes {
       .get('/', this.controller.getAllUsers)
       .get('/user', this.controller.getUserByName)
       .get('/nombre', this.controller.getUserByNombre)
-      .get('/:id', this.controller.getUserByID)
+      //.get('/:id', this.controller.getUserByID)
+      .post('/edi', this.controller.updateUser)
       .put('/', this.controller.updateUser)
-      .delete('/user', this.controller.deleteUser)
+      .get('/edu', this.controller.deleteUser)
+      .delete('/edu', this.controller.deleteUser)
       .post('/', this.controller.createUser)
   }
 }

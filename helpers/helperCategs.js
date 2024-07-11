@@ -7,7 +7,6 @@ export default class categsHelpers {
       if(!uso || !genero || !material || !montura || !tipo || !tratam || !marca || !id){
         throw new SyntaxError("datos incompletos, falta un campo");
       }
-      const CI = parseInt(id)
       if(!Number.isInteger(id)){
         throw new SyntaxError("El campo id, no es un número");
       }

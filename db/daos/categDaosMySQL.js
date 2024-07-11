@@ -37,7 +37,7 @@ export default class CategDaosMySQL extends MySql {
   }
 
   async getCategByID(id) {
-    const query = 
+    const query =
       `SELECT
         cat_id as ID,
         (select uc_nombre
@@ -69,8 +69,8 @@ export default class CategDaosMySQL extends MySql {
   }
 
   async getCategByName(marca) {
-    const query = 
-    `SELECT
+    const query =
+      `SELECT
         cat_id as ID,
         (select uc_nombre
         from uso_cat
@@ -137,11 +137,13 @@ export default class CategDaosMySQL extends MySql {
       from mar_cat
       where ma_nombre = "${categ.marca}");`
     const [result] = await this.connection.promise().query(query)
-    if (result.affectedRows = 1)
-      return "Ok"
-    else
+    if (result.affectedRows == 1) {
+      return "Ok Confirmación: " + result.insertId
+    } else {
       return "Error insertando"
+    }
   }
+
   async updateCateg(data) {
     const query = `UPDATE ${this.table}
       SET
@@ -181,18 +183,20 @@ export default class CategDaosMySQL extends MySql {
           where ma_nombre = "${data.marca}")
       WHERE cat_id = ${data.id}`
     const [result] = await this.connection.promise().query(query)
-    if (result.affectedRows = 1)
+    if (result.affectedRows == 1) {
       return "Ok"
-    else
+    } else {
       return "Error actualizando"
-
+    }
   }
+  
   async deleteCateg(id) {
     const query = `DELETE FROM ${this.table} WHERE cat_id = ${id}`
     const [result] = await this.connection.promise().query(query)
-    if (result.affectedRows = 1)
+    if (result.affectedRows == 1) {
       return "Ok"
-    else
+    } else {
       return "Error eliminando"
+    }
   }
 }

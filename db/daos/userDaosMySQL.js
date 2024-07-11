@@ -6,7 +6,7 @@ export default class UserDaosMySQL extends MySql {
     this.table = "usuarios"
   }
 
-  async getAllUsers(){
+  async getAllUsers() {
     const query = `SELECT * FROM ${this.table}`
     const [result] = await this.connection.promise().query(query)
     return result
@@ -27,7 +27,6 @@ export default class UserDaosMySQL extends MySql {
 
   async getUserByNombre(nombre) {
     const query = `select * from ${this.table} where u_nombre like "\%${nombre}\%"`
-    console.log("La consulta: ", query)
     const [result] = await this.connection.promise().query(query)
     return result
   }
@@ -38,11 +37,13 @@ export default class UserDaosMySQL extends MySql {
     values
     ("${user.usuario}", "${user.password}", "${user.nombre}", "${user.perfil}", "${user.foto}", ${user.estado})`
     const [result] = await this.connection.promise().query(query)
-    if(result.affectedRows = 1)
-      return "Ok"
-    else
+    if (result.affectedRows == 1) {
+      return "Ok Confirmación: " + result.insertId
+    } else {
       return "Error insertando"
+    }
   }
+
   async updateUser(data) {
     const query = `UPDATE ${this.table} SET
       u_password = "${data.password}", 
@@ -51,22 +52,23 @@ export default class UserDaosMySQL extends MySql {
       u_foto = "${data.foto}", 
       u_estado = ${data.estado}
       WHERE u_usuario = "${data.usuario}"`
-      const [result] = await this.connection.promise().query(query)
-      if(result.affectedRows = 1)
-        return "Ok"
-      else
-        return "Error actualizando"
-    
+    const [result] = await this.connection.promise().query(query)
+    if (result.affectedRows == 1) {
+      return "Ok"
+    } else {
+      return "Error actualizando"
+    }
   }
+
   async deleteUser(usuario) {
-    console.log("Borrando: ", usuario)
+    
+    console.log('${usuario}:', `"${usuario}"`)
     const query = `DELETE FROM ${this.table} WHERE u_usuario = "${usuario}"`
     const [result] = await this.connection.promise().query(query)
-    console.log(query)
-    console.log(result)
-    if(result.affectedRows = 1)
+    if (result.affectedRows == 1) {
       return "Ok"
-    else
+    } else {
       return "Error eliminando"
+    }
   }
 }

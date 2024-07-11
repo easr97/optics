@@ -9,6 +9,7 @@ export default class ProductsControllers {
   getAllProducts = async (req, res) => {
     try {
       const products = await this.db.getAllProducts()
+      //res.sendFile(__dirname + '/tabla_productos.html')
       res.json(products)
     } catch (err) {
       // ...la ejecución salta aquí
@@ -72,9 +73,18 @@ export default class ProductsControllers {
   }
 
   deleteProduct = async (req, res) => {
+    console.log('req.query:', req.query)
     const { referencia } = req.query
     console.log("Controller borrando: ", referencia)
-    const result = await this.db.deleteProduct(referencia)
-    res.json(result)
+    try {
+      const result = await this.db.deleteProduct(referencia)
+      res.json(result)
+    } catch (err) {
+      // ...la ejecución salta aquí
+      console.log("En controller ", err.name);
+      console.log("En controller ", err.message);
+      res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
+    }
+
   }
 }

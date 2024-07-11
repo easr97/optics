@@ -7,7 +7,7 @@ export default class ProductDaosMySQL extends MySql {
   }
 
   async getAllProducts() {
-    const query = 
+    const query =
       `SELECT
         p_referencia as Referencia,
         p_descripcion as Descripción,
@@ -44,16 +44,13 @@ export default class ProductDaosMySQL extends MySql {
   async getProductByID(referencia) {
     const query = `select * from ${this.table} where p_referencia = "${referencia}"`
     const [result] = await this.connection.promise().query(query)
-    console.log(result)
     return result
 
   }
 
   async getProductByName(descripcion) {
     const query = `select * from ${this.table} where p_descripcion like "\%${descripcion}\%"`
-    console.log(query)
     const [result] = await this.connection.promise().query(query)
-    console.log(result)
     return result
 
   }
@@ -62,12 +59,12 @@ export default class ProductDaosMySQL extends MySql {
     const query = `insert into ${this.table} (p_referencia, p_descripcion, p_categoria, p_imagen, p_stock_act, p_stock_min, p_costo, p_precio, p_estado) 
     values
     ("${product.referencia}", "${product.descripcion}", ${product.categoria}, "${product.imagen}", ${product.stock}, ${product.smin}, ${product.costo}, ${product.precio}, ${product.estado})`
-    const [result] = await this.connection.promise().
-    query(query)
-    if (result.affectedRows = 1)
-      return "Ok"
-    else
+    const [result] = await this.connection.promise().query(query)
+    if (result.affectedRows == 1) {
+      return "Ok Confirmación: " + result.insertId
+    } else {
       return "Error insertando"
+    }
   }
 
   async updateProduct(data) {
@@ -80,20 +77,20 @@ export default class ProductDaosMySQL extends MySql {
       p_estado = ${data.estado}
       WHERE p_referencia = "${data.referencia}"`
     const [result] = await this.connection.promise().query(query)
-    if (result.affectedRows = 1)
+    if (result.affectedRows == 1) {
       return "Ok"
-    else
+    } else {
       return "Error actualizando"
-
+    }
   }
+
   async deleteProduct(referencia) {
     const query = `DELETE FROM ${this.table} WHERE p_referencia = "${referencia}"`
     const [result] = await this.connection.promise().query(query)
-    console.log(query)
-    console.log(result)
-    if (result.affectedRows = 1)
+    if (result.affectedRows == 1) {
       return "Ok"
-    else
+    } else {
       return "Error eliminando"
+    }
   }
 }

@@ -13,7 +13,7 @@ export default class UsersControllers {
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller AllUsers", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
@@ -26,7 +26,7 @@ export default class UsersControllers {
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller ByName", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
@@ -39,7 +39,7 @@ export default class UsersControllers {
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller ByNombre", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
@@ -52,7 +52,7 @@ export default class UsersControllers {
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller ByID", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
@@ -65,7 +65,7 @@ export default class UsersControllers {
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller create", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
@@ -78,20 +78,22 @@ export default class UsersControllers {
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller update", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
 
   deleteUser = async (req, res) => {
     const { usuario } = req.query
+    console.log('req.query:', req.query)
     try {
+      console.log('usuario:', usuario)
       const result = await this.db.deleteUser(usuario)
       res.json(result)
     } catch (err) {
       // ...la ejecución salta aquí
       console.log("En controller ", err.name);
-      console.log("En controller ", err.message);
+      console.log("En controller delete", err.message);
       res.json("Nuestras disculpas, los datos tienen errores, revise, e intentaremos solicitarlos una vez más.")
     }
   }
