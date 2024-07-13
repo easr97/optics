@@ -58,6 +58,8 @@ export default class ClientsControllers {
     }
   }
 
+
+
   updateClient = async (req, res) => {
     const data = this.helpers.parseClient(req.body)
     try {
