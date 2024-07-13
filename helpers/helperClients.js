@@ -7,7 +7,7 @@ export default class clientsHelpers{
       if(!correo || !password || !dni || !nombre || !apellido || !telefono || !direccion || !fenac){
         throw new SyntaxError("datos incompletos, falta un campo");
       }
-      const regex = /[^A-Za-z0-9]/;
+      const regex = /[^A-Za-z0-9.-_]/;
       if (regex.test(password)){
         throw new SyntaxError("El campo password, contiene caracteres especiales");
       }
