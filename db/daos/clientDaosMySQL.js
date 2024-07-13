@@ -27,12 +27,20 @@ export default class ClientDaosMySQL extends MySql {
   }
 
   async createClient(client) {
+    const {correo, password, dni, nombre, apellido, telefono, direccion, fenac}= client
     const query = `insert into ${this.table} (cl_correo, cl_contrasena, cl_dni, cl_nombres, cl_apellidos, cl_telefono, cl_direccion, cl_fecha_nac)
+<<<<<<< HEAD
+    values (?, ?, ?, ?, ?, ?, ?, ?)`
+    const [result] = await this.connection.promise().query(query, [correo, password, dni, nombre, apellido, telefono, direccion, fenac])
+    if (result.affectedRows = 1)
+      return "Ok Confirmación: " + result.insertId
+=======
     values
     ("${client.correo}", "${client.password}", ${client.dni}, "${client.nombre}", "${client.apellido}", "${client.telefono}", "${client.direccion}", "${client.fenac}")`
     const [result] = await this.connection.promise().query(query)
     if (result.affectedRows = 1)
       return "Ok"
+>>>>>>> 898fea1bca6e1144902d387c1cd4bae5ebccb9e4
     else
       return "Error insertando"
   }
