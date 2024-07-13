@@ -7,20 +7,20 @@ Smart_Optics es una ecommerce de productos opticos como lentes de contactos y ga
 El proyecto FullStack Codo a Codo año 2024 consiste en:
 Planificar, elaborar, diseñar e implementar un ecommerce con las herramientas VSCode, bootstraps, canvas, node.js, MySQL y githubpages para desplegarla.
 Ciclo de vida se implemento Metodologia Scrum.
-El equipo de trabajo cuenta con 2 integrantes Fernandez Maria y Pablo Romano.
+El equipo de trabajo contó con 2 integrantes Fernandez Maria y Pablo Romano.
 Link de acceso:
 https://romanopablo8.github.io/Smart_Optics/
 
 #Backend
 https://github.com/easr97/optics 
 
-El equipo de trabajo cconto con 3 integrantes Fernandez Maria, Enrique Sifontes y Pablo Romano.
+El equipo de trabajo conto con 3 integrantes Fernandez Maria, Enrique Sifontes y Pablo Romano.
 Ojetivo del proyecto:
-Planificar, elaborar, diseñar e implementar el backend con la arquitectura MVC para el cual nos bsamos en:
+Planificar, elaborar, diseñar e implementar el backend con la arquitectura MVC para el cual nos basamos en:
 La creación de una base de datos con más de 4 tablas relacionadas empleando un sistema de gestión de bases de datos MySQL, el servidor web Apache por ejemplo Xampp o  Workbench.
 Para desplegar la BD utilizamos la  herramientas tecnologicas https://www.alwaysdata.com/.
-link de accesso: http://grupo14-24134.alwaysdata.net/
-link de accesso al cliente: https://grupo14-24134.alwaysdata.net/
+
+El link de accesso al cliente: https://grupo14-24134.alwaysdata.net/
 Alli puedrán registrarse como clientes y después probar a ingresar, autenticándose en el login.
 
 Para el desarrollo de la logica utilizamos javascript con node.js y express en VSC.
@@ -37,6 +37,11 @@ password: pabloromano
 Datos de conexión a la BD:
 Host: sql5.freesqldatabase.com
 Database name: sql5717581
+Database user: sql5717581
+Database password: 3ptiacIibc
+Port number: 3306
+
+
 Database user: sql5717581
 Database password: 3ptiacIibc
 Port number: 3306
